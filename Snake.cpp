@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <cstdlib>
 #include <conio.h>
+#include <ctime> 
 
 //update code
 using namespace std;
@@ -10,6 +11,12 @@ void gotoxy( int column, int line );
 struct Point{
     int x,y;
 };
+
+
+#define MINX 2
+#define MINY 2
+#define MAXX 35
+#define MAXY 20
 
 class CONRAN{
 public:
@@ -28,7 +35,9 @@ public:
         }
         gotoxy(Qua.x, Qua.y); cout <<   "*";
     }
-    void DiChuyen(int Huong, Point Qua){
+    
+    
+    void DiChuyen(int Huong, Point &Qua){
         for (int i = DoDai-1; i>0;i--)
             A[i] = A[i-1];
         if (Huong==0) A[0].x = A[0].x + 1;
@@ -41,17 +50,13 @@ public:
             Qua.x = rand()%(MAXX-MINX)+MINX;
             Qua.y = rand()%(MAXY-MINY)+MINY;
         }
-
     }
 };
-#define MINX 2
-#define MINY 2
-#define MAXX 35
-#define MAXY 20
 
 void VeKhung() {
     for (int i = MINX; i <= MAXX; i++) {
-        for (int j = MINX; j <= MAXY; j++) {
+       
+        for (int j = MINY; j <= MAXY; j++) { 
             if ((i == MINX) || (i == MAXX) || (j == MINY) || (j == MAXY)) {
                 gotoxy(i, j);
                 printf("+");
@@ -88,14 +93,13 @@ int main()
     return 0;
 }
 
-
 void gotoxy( int column, int line )
-  {
-  COORD coord;
-  coord.X = column;
-  coord.Y = line;
-  SetConsoleCursorPosition(
-    GetStdHandle( STD_OUTPUT_HANDLE ),
-    coord
+{
+    COORD coord;
+    coord.X = column;
+    coord.Y = line;
+    SetConsoleCursorPosition(
+        GetStdHandle( STD_OUTPUT_HANDLE ),
+        coord
     );
-  }
+}
