@@ -2,6 +2,8 @@
 #include <windows.h>
 #include <cstdlib>
 #include <conio.h>
+
+//updated code
 using namespace std;
 void gotoxy( int column, int line );
 struct Point{
